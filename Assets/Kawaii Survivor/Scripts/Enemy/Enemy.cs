@@ -40,10 +40,7 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
         }
 
-       
-
         StartSpawnSequence();
-
         attackDelay = 1f / attackFrequency;
     }
 
@@ -74,6 +71,8 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!hasSpawned) return;
+
         if (attackTimer >= attackDelay)
         {
             TryAttack();
@@ -90,7 +89,6 @@ public class Enemy : MonoBehaviour
         if (distanceToPlayer <= playerDetectionRadius)
         {
             Attack();
-            //PassAway();
         }
     }
 
@@ -102,6 +100,8 @@ public class Enemy : MonoBehaviour
     private void Attack()
     {
         attackTimer = 0;
+
+        player.TakeDamage(damage);
     }
 
     private void PassAway()
