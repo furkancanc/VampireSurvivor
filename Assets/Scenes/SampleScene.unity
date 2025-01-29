@@ -2901,6 +2901,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 1
   playerDetectionRadius: 0.5
+  passAwayParticles: {fileID: 833734378}
   gizmos: 0
 --- !u!4 &313839625
 Transform:

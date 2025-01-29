@@ -9,6 +9,9 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private float playerDetectionRadius;
 
+    [Header("Effects")]
+    [SerializeField] private ParticleSystem passAwayParticles;
+
     [Header("DEBUG")]
     [SerializeField] private bool gizmos;
 
@@ -45,8 +48,17 @@ public class EnemyMovement : MonoBehaviour
         float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
         if (distanceToPlayer <= playerDetectionRadius)
         {
-            Destroy(gameObject);
+            PassAway();
         }
+    }
+
+    private void PassAway()
+    {
+        // Unparent the particle & play them
+        passAwayParticles.transform.parent = null;
+        passAwayParticles.Play();
+
+        Destroy(gameObject);
     }
 
     private void OnDrawGizmos()
