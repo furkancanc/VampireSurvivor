@@ -2901,7 +2901,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 549110379}
   spawnIndicator: {fileID: 635057438}
-  moveSpeed: 0
+  moveSpeed: 1
   playerDetectionRadius: 0.5
   passAwayParticles: {fileID: 833734378}
   gizmos: 0
