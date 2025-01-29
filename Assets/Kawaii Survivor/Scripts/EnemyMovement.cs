@@ -31,13 +31,17 @@ public class EnemyMovement : MonoBehaviour
         }
 
         // Hide the renderer
-        // Show the spawn indicator
         renderer.enabled = false;
+
+        // Show the spawn indicator
         spawnIndicator.enabled = true;
 
         // Scale up & down the spawn indicator
-        // Show the neemy after 3 seconds
-        // Hide the spawn indicator
+        Vector3 targetScale = spawnIndicator.transform.localScale * 1.2f;
+        LeanTween.scale(spawnIndicator.gameObject, targetScale, .3f)
+            .setLoopPingPong(4)
+            .setOnComplete(SpawnSequenceCompleted);
+        
 
         // Prevent Following & Attacking during the spawn sequence
     }
@@ -48,6 +52,20 @@ public class EnemyMovement : MonoBehaviour
         FollowPlayer();
 
         TryAttack();
+    }
+
+    private void SpawnSequenceCompleted()
+    {
+        // Show the enemy after 3 seconds
+        // Hide the spawn indicator
+
+        // Show the renderer
+        renderer.enabled = true;
+
+        // Hide the spawn indicator
+        spawnIndicator.enabled = false;
+
+        moveSpeed = 1;
     }
 
     private void FollowPlayer()

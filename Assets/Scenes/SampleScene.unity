@@ -2899,9 +2899,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94755ec7281d203408909048340cfae3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  renderer: {fileID: 0}
-  spawnIndicator: {fileID: 0}
-  moveSpeed: 1
+  renderer: {fileID: 549110379}
+  spawnIndicator: {fileID: 635057438}
+  moveSpeed: 0
   playerDetectionRadius: 0.5
   passAwayParticles: {fileID: 833734378}
   gizmos: 0
