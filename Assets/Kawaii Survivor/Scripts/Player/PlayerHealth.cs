@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class PlayerHealth : MonoBehaviour
@@ -7,9 +8,15 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private int maxHealth;
     private int health;
 
+    [Header("Elements")]
+    [SerializeField] private Slider healthSlider;
+
     private void Start()
     {
         health = maxHealth;
+
+        healthSlider.value = 1f;
+
         Debug.Log("Health initialized to: " + health);
     }
 
@@ -17,6 +24,9 @@ public class PlayerHealth : MonoBehaviour
     {
         int realDamage = Mathf.Min(damage, health);
         health -= damage;
+
+        float healthBarValue = (float)health / maxHealth;
+        healthSlider.value = healthBarValue;
 
         Debug.Log("Health : " + health);
 
