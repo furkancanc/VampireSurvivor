@@ -5,6 +5,10 @@ public class EnemyMovement : MonoBehaviour
     [Header("Elements")]
     private Player player;
 
+    [Header("Spawn Sequence Related")]
+    [SerializeField] private SpriteRenderer renderer;
+    [SerializeField] private SpriteRenderer spawnIndicator;
+
     [Header("Settings")]
     [SerializeField] private float moveSpeed;
     [SerializeField] private float playerDetectionRadius;
@@ -25,6 +29,17 @@ public class EnemyMovement : MonoBehaviour
             Debug.Log("No player found, Auto-destroying.");
             Destroy(gameObject);
         }
+
+        // Hide the renderer
+        // Show the spawn indicator
+        renderer.enabled = false;
+        spawnIndicator.enabled = true;
+
+        // Scale up & down the spawn indicator
+        // Show the neemy after 3 seconds
+        // Hide the spawn indicator
+
+        // Prevent Following & Attacking during the spawn sequence
     }
 
     // Update is called once per frame
