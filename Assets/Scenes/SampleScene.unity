@@ -2904,6 +2904,8 @@ MonoBehaviour:
   moveSpeed: 1
   playerDetectionRadius: 0.5
   passAwayParticles: {fileID: 833734378}
+  damage: 10
+  attackFrequency: 2
   gizmos: 0
 --- !u!4 &313839625
 Transform:

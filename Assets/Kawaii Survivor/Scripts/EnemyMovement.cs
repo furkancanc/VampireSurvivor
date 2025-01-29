@@ -17,6 +17,12 @@ public class EnemyMovement : MonoBehaviour
     [Header("Effects")]
     [SerializeField] private ParticleSystem passAwayParticles;
 
+    [Header("Attack")]
+    [SerializeField] private int damage;
+    [SerializeField] private float attackFrequency;
+    private float attackDelay;
+    private float attackTimer;
+
     [Header("DEBUG")]
     [SerializeField] private bool gizmos;
 
@@ -42,7 +48,9 @@ public class EnemyMovement : MonoBehaviour
         LeanTween.scale(spawnIndicator.gameObject, targetScale, .3f)
             .setLoopPingPong(4)
             .setOnComplete(SpawnSequenceCompleted);
-        
+
+        attackDelay = 1f / attackFrequency;
+
 
         // Prevent Following & Attacking during the spawn sequence
     }
@@ -54,7 +62,15 @@ public class EnemyMovement : MonoBehaviour
             return;
 
         FollowPlayer();
-        TryAttack();
+
+        if (attackTimer >= attackDelay)
+        {
+            TryAttack();
+        }
+        else
+        {
+            Wait();
+        }
     }
 
     private void SpawnSequenceCompleted()
@@ -84,8 +100,20 @@ public class EnemyMovement : MonoBehaviour
         float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
         if (distanceToPlayer <= playerDetectionRadius)
         {
-            PassAway();
+            Attack();
+            //PassAway();
         }
+    }
+
+    private void Wait()
+    {
+        attackTimer += Time.deltaTime;
+    }
+
+    private void Attack()
+    {
+        Debug.Log("Dealing " + damage + " to the player...");
+        attackTimer = 0;
     }
 
     private void PassAway()
