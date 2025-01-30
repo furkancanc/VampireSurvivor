@@ -1,3 +1,5 @@
+using NUnit.Framework;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour
@@ -21,6 +23,7 @@ public class Weapon : MonoBehaviour
     [Header("Attack")]
     [SerializeField] private int damage;
     [SerializeField] private Animator animator;
+    private List<Enemy> damagedEnemies = new List<Enemy>();
 
     [Header("Animations")]
     [SerializeField] private float aimLerp;
@@ -63,6 +66,8 @@ public class Weapon : MonoBehaviour
     {
         animator.Play("Attack");
         state = State.Attack;
+
+        damagedEnemies.Clear();
     }
 
     private void Attacking()
@@ -73,6 +78,10 @@ public class Weapon : MonoBehaviour
     private void StopAttack()
     {
         state = State.Idle;
+
+        // Clear the attacked enemies
+        // Damaged enemies list
+        damagedEnemies.Clear();
     }
 
     private void Attack()
@@ -81,7 +90,17 @@ public class Weapon : MonoBehaviour
 
         for (int i = 0; i < enemies.Length; ++i)
         {
-            enemies[i].GetComponent<Enemy>().TakeDamage(damage);
+            Enemy enemy = enemies[i].GetComponent<Enemy>();
+            // 1. Is the enemy inside of the list?
+            if (!damagedEnemies.Contains(enemy))
+            {
+                Debug.Log(damage);
+                enemy.TakeDamage(damage);
+                damagedEnemies.Add(enemy);
+            }
+            // 2. If no, let's attack him, and add it to the list
+
+            // 3. If yes, let's continue, check the next enemy
         }
     }
 

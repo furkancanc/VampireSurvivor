@@ -112,10 +112,11 @@ public class Enemy : MonoBehaviour
         player.TakeDamage(damage);
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int takenDamage)
     {
-        int realDamage = Mathf.Min(damage, health);
-        health -= damage;
+        int realDamage = Mathf.Min(takenDamage, health);
+        Debug.Log("Damage: " + realDamage + " health: " + health);
+        health -= realDamage;
 
         healthText.text = health.ToString();
 
