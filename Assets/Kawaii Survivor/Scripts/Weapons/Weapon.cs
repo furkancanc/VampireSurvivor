@@ -2,9 +2,10 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    [Header("Elements")]
-    [SerializeField] private Transform enemy;
-
+    [Header("Settings")]
+    [SerializeField] private float range;
+    [SerializeField] private LayerMask enemyMask;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -15,14 +16,20 @@ public class Weapon : MonoBehaviour
     void Update()
     {
         Enemy closestEnemy = null;
+        //Enemy[] enemies = FindObjectsByType<Enemy>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
+        Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, range, enemyMask);
 
-        Enemy[] enemies = FindObjectsByType<Enemy>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
+        if (enemies.Length <= 0)
+        {
+            transform.up = Vector3.up;
+            return;
+        }
 
-        float minDistance = 5000;
+        float minDistance = range;
 
         for (int i = 0; i < enemies.Length; ++i)
         {
-            Enemy enemyChecked = enemies[i];
+            Enemy enemyChecked = enemies[i].GetComponent<Enemy>();
 
             float distanceToEnemy = Vector2.Distance(transform.position, enemyChecked.transform.position);
 
@@ -40,5 +47,11 @@ public class Weapon : MonoBehaviour
         }
 
         transform.up = (closestEnemy.transform.position - transform.position).normalized;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawWireSphere(transform.position, range);
     }
 }

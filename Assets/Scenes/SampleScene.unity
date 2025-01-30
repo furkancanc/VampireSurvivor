@@ -2945,11 +2945,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!4 &391374244 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3571687370252310883, guid: 8dc053489801806458ba901cb94639c4, type: 3}
-  m_PrefabInstance: {fileID: 8905161225634912966}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &399128550
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5913,7 +5908,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6489476c73b52a4ebaaa3d04b3298bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 391374244}
+  range: 3
+  enemyMask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!4 &1964690302
 Transform:
   m_ObjectHideFlags: 0
@@ -5922,14 +5920,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1964690300}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.401, y: 0, z: 0}
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 727244495}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2000711896
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 3571687370252310883}
   - component: {fileID: 2921852782093188524}
   - component: {fileID: 882841490758941879}
-  m_Layer: 0
+  - component: {fileID: 2319251223861791055}
+  m_Layer: 6
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68,6 +69,42 @@ MonoBehaviour:
   playerDetectionRadius: 0.5
   passAwayParticles: {fileID: 5251154446955139757}
   gizmos: 0
+--- !u!58 &2319251223861791055
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1145956445820525747}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -0.029187322, y: 0.36692405}
+  m_Radius: 0.4708135
 --- !u!1 &1276637596364579632
 GameObject:
   m_ObjectHideFlags: 0
@@ -79,7 +116,7 @@ GameObject:
   - component: {fileID: 778999428726707236}
   - component: {fileID: 5251154446955139757}
   - component: {fileID: 4160945380841790240}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Pass Away Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4970,7 +5007,7 @@ GameObject:
   - component: {fileID: 403643572757107058}
   - component: {fileID: 7295803363552952525}
   - component: {fileID: 5683159615990480423}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Enemy Renderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5071,7 +5108,7 @@ GameObject:
   - component: {fileID: 4487982015890953781}
   - component: {fileID: 3136513000067737289}
   - component: {fileID: 6395831865792368161}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Spawn Indicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
