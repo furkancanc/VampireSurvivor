@@ -2,6 +2,14 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
+    enum State 
+    { 
+        Idle,
+        Attack
+    }
+
+    private State state;
+
     [Header("Elements")]
     [SerializeField] private Transform hitDetectionTransform;
     [SerializeField] private float hitDetectionRadius;
@@ -12,6 +20,7 @@ public class Weapon : MonoBehaviour
 
     [Header("Attack")]
     [SerializeField] private int damage;
+    [SerializeField] private Animator animator;
 
     [Header("Animations")]
     [SerializeField] private float aimLerp;
@@ -19,14 +28,21 @@ public class Weapon : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        state = State.Idle;
     }
 
     // Update is called once per frame
     void Update()
     {
-        AutoAim();
-        Attack();
+        switch (state)
+        {
+            case State.Idle:
+                AutoAim();
+                break;
+            case State.Attack:
+                Attacking();
+                break;
+        }
     }
 
     private void AutoAim()
@@ -40,6 +56,23 @@ public class Weapon : MonoBehaviour
         }
 
         transform.up = Vector3.Lerp(transform.up, targetUpVector, Time.deltaTime * aimLerp);
+    }
+
+    [NaughtyAttributes.Button]
+    private void StartAttack()
+    {
+        animator.Play("Attack");
+        state = State.Attack;
+    }
+
+    private void Attacking()
+    {
+        Attack();
+    }
+
+    private void StopAttack()
+    {
+        state = State.Idle;
     }
 
     private void Attack()

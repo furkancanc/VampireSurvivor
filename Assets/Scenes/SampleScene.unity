@@ -6009,6 +6009,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   damage: 5
+  animator: {fileID: 1964690303}
   aimLerp: 12
 --- !u!4 &1964690302
 Transform:
