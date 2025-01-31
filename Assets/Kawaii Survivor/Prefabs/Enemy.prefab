@@ -67,7 +67,7 @@ MonoBehaviour:
   maxHealth: 10
   renderer: {fileID: 7295803363552952525}
   spawnIndicator: {fileID: 3136513000067737289}
-  damage: 1
+  damage: 5
   attackFrequency: 1
   playerDetectionRadius: 0.5
   passAwayParticles: {fileID: 5251154446955139757}

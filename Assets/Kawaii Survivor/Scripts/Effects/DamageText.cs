@@ -20,9 +20,9 @@ public class DamageText : MonoBehaviour
     }
 
     [NaughtyAttributes.Button]
-    public void Animate()
+    public void Animate(int damage)
     {
-        damageText.text = Random.Range(10, 1000).ToString();
+        damageText.text = damage.ToString();
         animator.Play("Animate");
     }
 }

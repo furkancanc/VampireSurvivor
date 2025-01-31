@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -29,6 +30,9 @@ public class Enemy : MonoBehaviour
 
     [Header("Effects")]
     [SerializeField] private ParticleSystem passAwayParticles;
+
+    [Header("Actions")]
+    public static Action<int, Vector2> onDamageTaken;
 
     [Header("DEBUG")]
     [SerializeField] private bool gizmos;
@@ -119,6 +123,8 @@ public class Enemy : MonoBehaviour
         health -= realDamage;
 
         healthText.text = health.ToString();
+
+        onDamageTaken?.Invoke(realDamage, transform.position);
 
         if (health <= 0)
         {

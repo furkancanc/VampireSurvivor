@@ -3497,7 +3497,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000512727bc
+  m_ApplyToSortingLayers: 00000000512727bc1bfe7f9c
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -3925,8 +3925,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1669333477
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 5485319108022510092, guid: 15c981701acaf3f4b840cf2f1f7d3446, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -5004,7 +5004,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8726a964ca03c4b45b380500f2fa9d8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageTextPrefab: {fileID: 0}
+  damageTextPrefab: {fileID: 880975188725767449, guid: e1b659e6a8bc7b941bb16b0dcf5b2f6c, type: 3}
 --- !u!1001 &1369005982
 PrefabInstance:
   m_ObjectHideFlags: 0
