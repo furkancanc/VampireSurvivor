@@ -68,8 +68,6 @@ public class Weapon : MonoBehaviour
 
     private void ManageAttackTimer()
     {
-        
-
         if (attackTimer >= attackDelay)
         {
             attackTimer = 0;
@@ -89,6 +87,8 @@ public class Weapon : MonoBehaviour
         state = State.Attack;
 
         damagedEnemies.Clear();
+
+        animator.speed = 1f / attackDelay;
     }
 
     private void Attacking()

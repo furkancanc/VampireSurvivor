@@ -3933,7 +3933,7 @@ GameObject:
   - component: {fileID: 747806551}
   - component: {fileID: 747806547}
   - component: {fileID: 747806549}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Dave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6009,7 +6009,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   damage: 5
-  attackDelay: 2
+  attackDelay: 0.3
   animator: {fileID: 1964690303}
   aimLerp: 12
 --- !u!4 &1964690302
