@@ -35,6 +35,11 @@ public class Enemy : MonoBehaviour
     [Header("Actions")]
     public static Action<int, Vector2> onDamageTaken;
 
+    [Header("Range Enemy Related")]
+    [SerializeField] private bool isRangeEnemy;
+    [SerializeField] private float rangePlayerDetectionRadius;
+
+
     [Header("DEBUG")]
     [SerializeField] private bool gizmos;
 
@@ -74,7 +79,7 @@ public class Enemy : MonoBehaviour
         collider.enabled = true;
 
         hasSpawned = true;
-        movement.StorePlayer(player);
+        movement.StorePlayer(player, isRangeEnemy, rangePlayerDetectionRadius);
     }
 
     private void SetRenderersVisibility(bool visibility = true)
@@ -101,9 +106,20 @@ public class Enemy : MonoBehaviour
     private void TryAttack()
     {
         float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
-        if (distanceToPlayer <= playerDetectionRadius)
+
+        if (!isRangeEnemy)
         {
-            Attack();
+            if (distanceToPlayer <= playerDetectionRadius)
+            {
+                Attack();
+            }
+        }
+        else
+        {
+            if (distanceToPlayer <= rangePlayerDetectionRadius)
+            {
+                Attack();
+            }
         }
     }
 
@@ -116,7 +132,14 @@ public class Enemy : MonoBehaviour
     {
         attackTimer = 0;
 
-        player.TakeDamage(damage);
+        if (!isRangeEnemy)
+        {
+            player.TakeDamage(damage);
+        }
+        else
+        {
+            Debug.Log("Shooting at player");
+        }
     }
 
     public void TakeDamage(int takenDamage)
@@ -150,7 +173,7 @@ public class Enemy : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, playerDetectionRadius);
 
-        Gizmos.color = Color.white;
-        
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawWireSphere(transform.position, rangePlayerDetectionRadius);
     }
 }
