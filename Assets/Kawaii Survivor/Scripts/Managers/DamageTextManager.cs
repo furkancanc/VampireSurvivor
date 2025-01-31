@@ -1,25 +1,48 @@
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class DamageTextManager : MonoBehaviour
 {
     [Header("Elements")]
     [SerializeField] private DamageText damageTextPrefab;
 
+    [Header("Pool")]
+    private ObjectPool<DamageText> damageTextPool;
 
     private void Awake()
     {
-        Enemy.onDamageTaken += InstantiateDamageText;
+        Enemy.onDamageTaken += EnemyHitCallback;
     }
 
     private void OnDestroy()
     {
-        Enemy.onDamageTaken -= InstantiateDamageText;
+        Enemy.onDamageTaken -= EnemyHitCallback;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        damageTextPool = new ObjectPool<DamageText>(CreateFunction, ActionOnGet, ActionOnRelease, ActionOnDestroy);
+    }
+
+    private DamageText CreateFunction()
+    {
+        return Instantiate(damageTextPrefab, transform);
+    }
+
+    private void ActionOnGet(DamageText damageText)
+    {
+        damageText.gameObject.SetActive(true);
+    }
+
+    private void ActionOnRelease(DamageText damageText)
+    {
+        damageText.gameObject.SetActive(false);
+    }
+
+    private void ActionOnDestroy(DamageText damageText)
+    {
+        Destroy(damageText.gameObject);
     }
 
     // Update is called once per frame
@@ -29,11 +52,15 @@ public class DamageTextManager : MonoBehaviour
     }
 
     [NaughtyAttributes.Button]
-    private void InstantiateDamageText(int damage, Vector2 enemyPosition)
+    private void EnemyHitCallback(int damage, Vector2 enemyPosition)
     {
-        Vector3 spawnPosition = enemyPosition + Vector2.up * 1.5f;
+        DamageText damageTextInstance = damageTextPool.Get();
 
-        DamageText damageTextInstance = Instantiate(damageTextPrefab, spawnPosition, Quaternion.identity, transform);
+        Vector3 spawnPosition = enemyPosition + Vector2.up * 1.5f;
+        damageTextInstance.transform.position = spawnPosition;
+
         damageTextInstance.Animate(damage);
+
+        LeanTween.delayedCall(1, () => damageTextPool.Release(damageTextInstance));
     }
 }
