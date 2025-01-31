@@ -67,6 +67,7 @@ MonoBehaviour:
   maxHealth: 10
   renderer: {fileID: 7295803363552952525}
   spawnIndicator: {fileID: 3136513000067737289}
+  collider: {fileID: 2319251223861791055}
   damage: 5
   attackFrequency: 1
   playerDetectionRadius: 0.5
@@ -79,7 +80,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1145956445820525747}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}

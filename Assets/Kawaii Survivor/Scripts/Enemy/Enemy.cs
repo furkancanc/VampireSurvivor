@@ -19,6 +19,7 @@ public class Enemy : MonoBehaviour
     [Header("Spawn Sequence Related")]
     [SerializeField] private SpriteRenderer renderer;
     [SerializeField] private SpriteRenderer spawnIndicator;
+    [SerializeField] private Collider2D collider;
     private bool hasSpawned;
 
     [Header("Attack")]
@@ -69,6 +70,8 @@ public class Enemy : MonoBehaviour
     private void SpawnSequenceCompleted()
     {
         SetRenderersVisibility();
+
+        collider.enabled = true;
 
         hasSpawned = true;
         movement.StorePlayer(player);
