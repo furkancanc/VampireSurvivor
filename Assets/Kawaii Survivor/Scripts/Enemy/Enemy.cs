@@ -72,12 +72,9 @@ public abstract class Enemy : MonoBehaviour
     }
 
     // Update is called once per frame
-    protected void Update()
+    protected bool CanAttack()
     {
-        if (!renderer.enabled)
-        {
-            return;
-        }
+        return renderer.enabled;
     }
 
     public void TakeDamage(int takenDamage)
