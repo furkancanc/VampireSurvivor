@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 
 [RequireComponent(typeof(EnemyMovement))]
-public class Enemy : MonoBehaviour
+public class RangeEnemy : MonoBehaviour
 {
     [Header("Components")]
     private EnemyMovement movement;
@@ -64,7 +64,6 @@ public class Enemy : MonoBehaviour
             .setLoopPingPong(4)
             .setOnComplete(SpawnSequenceCompleted);
     }
-
     private void SpawnSequenceCompleted()
     {
         SetRenderersVisibility();
@@ -94,17 +93,18 @@ public class Enemy : MonoBehaviour
         {
             Wait();
         }
-
-        movement.FollowPlayer();
     }
 
     private void TryAttack()
     {
         float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
-
         if (distanceToPlayer <= playerDetectionRadius)
         {
             Attack();
+        }
+        else
+        {
+            movement.FollowPlayer();
         }
     }
 
@@ -116,9 +116,6 @@ public class Enemy : MonoBehaviour
     private void Attack()
     {
         attackTimer = 0;
-        player.TakeDamage(damage);
-        
-        
     }
 
     public void TakeDamage(int takenDamage)

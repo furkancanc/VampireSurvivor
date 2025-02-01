@@ -72,6 +72,8 @@ MonoBehaviour:
   attackFrequency: 1
   playerDetectionRadius: 0.5
   passAwayParticles: {fileID: 5251154446955139757}
+  isRangeEnemy: 0
+  rangePlayerDetectionRadius: 0
   gizmos: 0
 --- !u!58 &2319251223861791055
 CircleCollider2D:
