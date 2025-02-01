@@ -2,11 +2,12 @@ using System;
 using TMPro;
 using UnityEngine;
 
-[RequireComponent(typeof(EnemyMovement))]
+[RequireComponent(typeof(EnemyMovement), typeof(RangeEnemyAttack))]
 public class RangeEnemy : MonoBehaviour
 {
     [Header("Components")]
     private EnemyMovement movement;
+    private RangeEnemyAttack attack;
 
     [Header("Health")]
     [SerializeField] private int maxHealth;
@@ -22,11 +23,7 @@ public class RangeEnemy : MonoBehaviour
     private bool hasSpawned;
 
     [Header("Attack")]
-    [SerializeField] private int damage;
-    [SerializeField] private float attackFrequency;
     [SerializeField] private float playerDetectionRadius;
-    private float attackDelay;
-    private float attackTimer;
 
     [Header("Effects")]
     [SerializeField] private ParticleSystem passAwayParticles;
@@ -43,7 +40,11 @@ public class RangeEnemy : MonoBehaviour
         health = maxHealth;
 
         movement = GetComponent<EnemyMovement>();
+        attack = GetComponent<RangeEnemyAttack>();
+
         player = FindFirstObjectByType<Player>();
+        attack.StorePlayer(player);
+
 
         if (player == null)
         {
@@ -52,7 +53,6 @@ public class RangeEnemy : MonoBehaviour
         }
 
         StartSpawnSequence();
-        attackDelay = 1f / attackFrequency;
     }
 
     private void StartSpawnSequence()
@@ -83,39 +83,30 @@ public class RangeEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!hasSpawned) return;
-
-        if (attackTimer >= attackDelay)
+        if (!renderer.enabled)
         {
-            TryAttack();
+            return;
+        }
+
+        ManageAttack();
+    }
+
+    private void ManageAttack()
+    {
+        float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
+        if (distanceToPlayer > playerDetectionRadius)
+        {
+            movement.FollowPlayer();
         }
         else
         {
-            Wait();
+            TryAttack();
         }
     }
 
     private void TryAttack()
     {
-        float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
-        if (distanceToPlayer <= playerDetectionRadius)
-        {
-            Attack();
-        }
-        else
-        {
-            movement.FollowPlayer();
-        }
-    }
-
-    private void Wait()
-    {
-        attackTimer += Time.deltaTime;
-    }
-
-    private void Attack()
-    {
-        attackTimer = 0;
+        attack.AutoAim();
     }
 
     public void TakeDamage(int takenDamage)

@@ -5178,7 +5178,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5485725619942719398}
   - component: {fileID: 4871100237585342576}
-  - component: {fileID: 6615726173315076087}
   - component: {fileID: 2619733916476327174}
   m_Layer: 6
   m_Name: Range Enemy
@@ -5219,30 +5218,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 1
---- !u!114 &6615726173315076087
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6020726837121102835}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc4e4c1b649144c41a46f6e7b448db15, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthText: {fileID: 1082871356098911779}
-  maxHealth: 10
-  renderer: {fileID: 2276833263737008584}
-  spawnIndicator: {fileID: 1580545989722825445}
-  collider: {fileID: 2619733916476327174}
-  damage: 5
-  attackFrequency: 1
-  playerDetectionRadius: 0.5
-  passAwayParticles: {fileID: 1046045153144682047}
-  isRangeEnemy: 0
-  rangePlayerDetectionRadius: 0
-  gizmos: 0
 --- !u!58 &2619733916476327174
 CircleCollider2D:
   m_ObjectHideFlags: 0
