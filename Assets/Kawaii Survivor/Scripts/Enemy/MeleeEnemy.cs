@@ -1,5 +1,6 @@
 using System;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(EnemyMovement))]
@@ -22,53 +23,17 @@ public class MeleeEnemy : Enemy
     [SerializeField] private bool gizmos;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    protected override void Start()
     {
-        health = maxHealth;
+        base.Start();
 
-        movement = GetComponent<EnemyMovement>();
-        player = FindFirstObjectByType<Player>();
-
-        if (player == null)
-        {
-            Debug.Log("No player found, Auto-destroying.");
-            Destroy(gameObject);
-        }
-
-        StartSpawnSequence();
         attackDelay = 1f / attackFrequency;
-    }
-
-    private void StartSpawnSequence()
-    {
-        SetRenderersVisibility(false);
-
-        Vector3 targetScale = spawnIndicator.transform.localScale * 1.2f;
-        LeanTween.scale(spawnIndicator.gameObject, targetScale, .3f)
-            .setLoopPingPong(4)
-            .setOnComplete(SpawnSequenceCompleted);
-    }
-
-    private void SpawnSequenceCompleted()
-    {
-        SetRenderersVisibility();
-
-        GetComponent<Collider>().enabled = true;
-
-        hasSpawned = true;
-        movement.StorePlayer(player);
-    }
-
-    private void SetRenderersVisibility(bool visibility = true)
-    {
-        GetComponent<Renderer>().enabled = visibility;
-        spawnIndicator.enabled = !visibility;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!hasSpawned) return;
+        base.Update();
 
         if (attackTimer >= attackDelay)
         {
@@ -105,32 +70,11 @@ public class MeleeEnemy : Enemy
         
     }
 
-    public void TakeDamage(int takenDamage)
-    {
-        int realDamage = Mathf.Min(takenDamage, health);
-        health -= realDamage;
-
-        onDamageTaken?.Invoke(realDamage, transform.position);
-
-        if (health <= 0)
-        {
-            PassAway();
-        }
-    }
-
     private void PassAway()
     {
         passAwayParticles.transform.parent = null;
         passAwayParticles.Play();
 
         Destroy(gameObject);
-    }
-
-    private void OnDrawGizmos()
-    {
-        if (!gizmos) return;
-
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, playerDetectionRadius);
     }
 }
