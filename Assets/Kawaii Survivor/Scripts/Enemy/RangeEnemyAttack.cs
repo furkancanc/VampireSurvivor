@@ -4,7 +4,7 @@ public class RangeEnemyAttack : MonoBehaviour
 {
     [Header("Elements")]
     [SerializeField] private Transform shootingPoint;
-    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private EnemyBullet bulletPrefab;
     private Player player;
 
     [Header("Settings")]
@@ -42,10 +42,9 @@ public class RangeEnemyAttack : MonoBehaviour
     private void Shoot()
     {
         Vector2 direction = (player.GetCenter() - (Vector2)shootingPoint.position).normalized;
-        GameObject bulletInstance = Instantiate(bulletPrefab, shootingPoint.position, Quaternion.identity);
 
-        bulletInstance.transform.right = direction;
-        bulletInstance.GetComponent<Rigidbody2D>().linearVelocity = direction * 5;
+        EnemyBullet bulletInstance = Instantiate(bulletPrefab, shootingPoint.position, Quaternion.identity);
+        bulletInstance.Shoot(damage, direction); ;
     }
 }
 
