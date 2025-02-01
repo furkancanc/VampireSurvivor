@@ -11,12 +11,12 @@ public class DamageTextManager : MonoBehaviour
 
     private void Awake()
     {
-        MeleeEnemy.onDamageTaken += EnemyHitCallback;
+        Enemy.onDamageTaken += EnemyHitCallback;
     }
 
     private void OnDestroy()
     {
-        MeleeEnemy.onDamageTaken -= EnemyHitCallback;
+        Enemy.onDamageTaken -= EnemyHitCallback;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
