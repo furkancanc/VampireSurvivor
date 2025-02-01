@@ -2,10 +2,24 @@ using System;
 using TMPro;
 using UnityEngine;
 
-[RequireComponent(typeof(EnemyMovement), typeof(RangeEnemyAttack))]
-public class RangeEnemy : Enemy
+[RequireComponent(typeof(EnemyMovement))]
+public class MeleeEnemy : Enemy
 {
-    private RangeEnemyAttack attack;
+    [Header("Attack")]
+    [SerializeField] private int damage;
+    [SerializeField] private float attackFrequency;
+    [SerializeField] private float playerDetectionRadius;
+    private float attackDelay;
+    private float attackTimer;
+
+    [Header("Effects")]
+    [SerializeField] private ParticleSystem passAwayParticles;
+
+    [Header("Actions")]
+    public static Action<int, Vector2> onDamageTaken;
+
+    [Header("DEBUG")]
+    [SerializeField] private bool gizmos;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -13,11 +27,7 @@ public class RangeEnemy : Enemy
         health = maxHealth;
 
         movement = GetComponent<EnemyMovement>();
-        attack = GetComponent<RangeEnemyAttack>();
-
         player = FindFirstObjectByType<Player>();
-        attack.StorePlayer(player);
-
 
         if (player == null)
         {
@@ -26,6 +36,7 @@ public class RangeEnemy : Enemy
         }
 
         StartSpawnSequence();
+        attackDelay = 1f / attackFrequency;
     }
 
     private void StartSpawnSequence()
@@ -37,11 +48,12 @@ public class RangeEnemy : Enemy
             .setLoopPingPong(4)
             .setOnComplete(SpawnSequenceCompleted);
     }
+
     private void SpawnSequenceCompleted()
     {
         SetRenderersVisibility();
 
-        collider.enabled = true;
+        GetComponent<Collider>().enabled = true;
 
         hasSpawned = true;
         movement.StorePlayer(player);
@@ -49,37 +61,48 @@ public class RangeEnemy : Enemy
 
     private void SetRenderersVisibility(bool visibility = true)
     {
-        renderer.enabled = visibility;
+        GetComponent<Renderer>().enabled = visibility;
         spawnIndicator.enabled = !visibility;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!renderer.enabled)
-        {
-            return;
-        }
+        if (!hasSpawned) return;
 
-        ManageAttack();
-    }
-
-    private void ManageAttack()
-    {
-        float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
-        if (distanceToPlayer > playerDetectionRadius)
-        {
-            movement.FollowPlayer();
-        }
-        else
+        if (attackTimer >= attackDelay)
         {
             TryAttack();
         }
+        else
+        {
+            Wait();
+        }
+
+        movement.FollowPlayer();
     }
 
     private void TryAttack()
     {
-        attack.AutoAim();
+        float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
+
+        if (distanceToPlayer <= playerDetectionRadius)
+        {
+            Attack();
+        }
+    }
+
+    private void Wait()
+    {
+        attackTimer += Time.deltaTime;
+    }
+
+    private void Attack()
+    {
+        attackTimer = 0;
+        player.TakeDamage(damage);
+        
+        
     }
 
     public void TakeDamage(int takenDamage)
