@@ -4908,7 +4908,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3467283910591716170
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5177,6 +5177,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5485725619942719398}
+  - component: {fileID: 9144378238962642940}
+  - component: {fileID: 6480176722106736932}
   - component: {fileID: 4871100237585342576}
   - component: {fileID: 2619733916476327174}
   m_Layer: 6
@@ -5203,8 +5205,44 @@ Transform:
   - {fileID: 4565689237796059348}
   - {fileID: 8645777027538636623}
   - {fileID: 3467283910591716170}
+  - {fileID: 2231158266481282084}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9144378238962642940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6020726837121102835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4aa4b436d4deb984cb35aac5c0e37994, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
+  renderer: {fileID: 2276833263737008584}
+  spawnIndicator: {fileID: 1580545989722825445}
+  collider: {fileID: 2619733916476327174}
+  playerDetectionRadius: 5
+  passAwayParticles: {fileID: 1046045153144682047}
+  gizmos: 1
+--- !u!114 &6480176722106736932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6020726837121102835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd6a03326d552b44d997221c113aa6c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shootingPoint: {fileID: 2231158266481282084}
+  bulletPrefab: {fileID: 0}
+  damage: 1
+  attackFrequency: 1
 --- !u!114 &4871100237585342576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5355,3 +5393,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 2276833263737008584}
+--- !u!1 &8508003201914765092
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2231158266481282084}
+  m_Layer: 6
+  m_Name: Shooting Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2231158266481282084
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8508003201914765092}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.4, y: 0.34, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5485725619942719398}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

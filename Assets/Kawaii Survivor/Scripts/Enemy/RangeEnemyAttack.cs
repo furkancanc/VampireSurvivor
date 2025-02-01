@@ -39,17 +39,13 @@ public class RangeEnemyAttack : MonoBehaviour
         }
     }
 
-    Vector2 gizmosDirection;
     private void Shoot()
     {
-        Vector2 direction = (player.transform.position - shootingPoint.position).normalized;
-        gizmosDirection = direction;
+        Vector2 direction = (player.GetCenter() - (Vector2)shootingPoint.position).normalized;
+        GameObject bulletInstance = Instantiate(bulletPrefab, shootingPoint.position, Quaternion.identity);
 
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.white;
-        Gizmos.DrawLine(shootingPoint.position, (Vector2)transform.position + gizmosDirection * 5);
+        bulletInstance.transform.right = direction;
+        bulletInstance.GetComponent<Rigidbody2D>().linearVelocity = direction * 5;
     }
 }
+
