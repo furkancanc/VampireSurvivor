@@ -22,15 +22,15 @@ public class Weapon : MonoBehaviour
     [SerializeField] private LayerMask enemyMask;
 
     [Header("Attack")]
-    [SerializeField] private int damage;
-    [SerializeField] private float attackDelay;
+    [SerializeField] protected int damage;
+    [SerializeField] protected float attackDelay;
     [SerializeField] private Animator animator;
 
+    protected float attackTimer;
     private List<Enemy> damagedEnemies = new List<Enemy>();
-    private float attackTimer;
 
     [Header("Animations")]
-    [SerializeField] private float aimLerp;
+    [SerializeField] protected float aimLerp;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -132,7 +132,7 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    private Enemy GetClosestEnemy()
+    protected Enemy GetClosestEnemy()
     {
         Enemy closestEnemy = null;
         Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, range, enemyMask);
@@ -164,6 +164,11 @@ public class Weapon : MonoBehaviour
     {
         Gizmos.color = Color.magenta;
         Gizmos.DrawWireSphere(transform.position, range);
+
+        if (hitDetectionTransform == null)
+        {
+            return;
+        }
 
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(hitDetectionTransform.position, hitDetectionRadius);
