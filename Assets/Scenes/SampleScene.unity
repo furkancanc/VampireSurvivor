@@ -4808,9 +4808,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b2616df141bb0246bb1730b6e828da4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitDetectionTransform: {fileID: 0}
-  hitCollider: {fileID: 0}
-  hitDetectionRadius: 0.77
   range: 6
   enemyMask:
     serializedVersion: 2
@@ -6147,7 +6144,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1964690302}
-  - component: {fileID: 1964690301}
+  - component: {fileID: 1964690304}
   - component: {fileID: 1964690303}
   m_Layer: 0
   m_Name: DeBoink
@@ -6156,29 +6153,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1964690301
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1964690300}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6489476c73b52a4ebaaa3d04b3298bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hitDetectionTransform: {fileID: 1739260967}
-  hitCollider: {fileID: 1739260968}
-  hitDetectionRadius: 0.3
-  range: 3
-  enemyMask:
-    serializedVersion: 2
-    m_Bits: 64
-  damage: 5
-  attackDelay: 0.3
-  animator: {fileID: 1964690303}
-  aimLerp: 12
 --- !u!4 &1964690302
 Transform:
   m_ObjectHideFlags: 0
@@ -6217,6 +6191,28 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1964690304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1964690300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 760a1f5331b9786418ad50dd463cca1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 3
+  enemyMask:
+    serializedVersion: 2
+    m_Bits: 64
+  damage: 5
+  attackDelay: 1
+  animator: {fileID: 1964690303}
+  aimLerp: 12
+  hitDetectionTransform: {fileID: 1739260967}
+  hitCollider: {fileID: 1739260968}
 --- !u!1 &2000711896
 GameObject:
   m_ObjectHideFlags: 0
