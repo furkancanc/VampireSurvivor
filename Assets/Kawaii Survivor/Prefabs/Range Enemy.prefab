@@ -5220,7 +5220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aa4b436d4deb984cb35aac5c0e37994, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 50
   renderer: {fileID: 2276833263737008584}
   spawnIndicator: {fileID: 1580545989722825445}
   collider: {fileID: 2619733916476327174}

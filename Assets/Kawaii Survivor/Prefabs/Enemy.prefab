@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dd65b9e2c2ea464c88ffd15551c79f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 50
   renderer: {fileID: 7295803363552952525}
   spawnIndicator: {fileID: 3136513000067737289}
   collider: {fileID: 2319251223861791055}
