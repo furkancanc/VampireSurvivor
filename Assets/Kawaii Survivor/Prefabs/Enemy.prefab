@@ -99,18 +99,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dd65b9e2c2ea464c88ffd15551c79f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 0
-  renderer: {fileID: 0}
-  spawnIndicator: {fileID: 0}
-  collider: {fileID: 0}
-  playerDetectionRadius: 0
-  passAwayParticles: {fileID: 0}
+  maxHealth: 10
+  renderer: {fileID: 7295803363552952525}
+  spawnIndicator: {fileID: 3136513000067737289}
+  collider: {fileID: 2319251223861791055}
+  playerDetectionRadius: 3
+  passAwayParticles: {fileID: 5251154446955139757}
   gizmos: 0
-  damage: 0
-  attackFrequency: 0
-  playerDetectionRadius: 0
-  passAwayParticles: {fileID: 0}
-  gizmos: 0
+  damage: 5
+  attackFrequency: 0.3
 --- !u!1 &1276637596364579632
 GameObject:
   m_ObjectHideFlags: 0
@@ -5019,7 +5016,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5559873781738791365
 RectTransform:
   m_ObjectHideFlags: 0
