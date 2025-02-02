@@ -4077,7 +4077,7 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.51}
+  m_Offset: {x: 0, y: 0.5}
   m_Radius: 0.53
 --- !u!114 &747806550
 MonoBehaviour:
@@ -4119,6 +4119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8464801944fb7344bb1ddcea30950960, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  daveCollider: {fileID: 747806549}
 --- !u!1 &753766335
 GameObject:
   m_ObjectHideFlags: 0
