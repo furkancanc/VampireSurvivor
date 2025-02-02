@@ -18,6 +18,6 @@ public class DropsManager : MonoBehaviour
 
     private void EnemyPassedAwayCallback(Vector2 enemyPosition)
     {
-        Instantiate(candyPrefab, enemyPosition, Quaternion.identity, transform);
+        Candy candyInstance = Instantiate(candyPrefab, enemyPosition, Quaternion.identity, transform);
     }
 }

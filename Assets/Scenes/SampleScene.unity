@@ -3974,6 +3974,7 @@ GameObject:
   - component: {fileID: 747806550}
   - component: {fileID: 747806548}
   - component: {fileID: 747806551}
+  - component: {fileID: 747806552}
   - component: {fileID: 747806547}
   - component: {fileID: 747806549}
   m_Layer: 7
@@ -4106,6 +4107,18 @@ MonoBehaviour:
   maxHealth: 10
   healthSlider: {fileID: 1517990914}
   healthText: {fileID: 700408487}
+--- !u!114 &747806552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 747806544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8464801944fb7344bb1ddcea30950960, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &753766335
 GameObject:
   m_ObjectHideFlags: 0
