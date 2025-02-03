@@ -1,3 +1,4 @@
+using NaughtyAttributes;
 using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,9 @@ using UnityEngine;
 public class WaveManager : MonoBehaviour
 {
     [Header("Settings")]
+    [SerializeField] private float waveDuration;
+
+    [Header("Waves")]
     [SerializeField] private Wave[] wave;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -30,5 +34,7 @@ public struct Wave
 [System.Serializable]
 public struct WaveSegment
 {
+    [MinMaxSlider(0, 100)] public Vector2 tStartEnd;
+    public float spawnFrequency;
     public GameObject prefab;
 }

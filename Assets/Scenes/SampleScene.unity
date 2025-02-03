@@ -6783,17 +6783,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f504cc8cacc3ff24d9693146896bf49c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waveDuration: 30
   wave:
   - name: Wave 00
     segments:
-    - prefab: {fileID: 1145956445820525747, guid: 8dc053489801806458ba901cb94639c4, type: 3}
+    - tStartEnd: {x: 0, y: 30}
+      spawnFrequency: 1
+      prefab: {fileID: 1145956445820525747, guid: 8dc053489801806458ba901cb94639c4, type: 3}
   - name: Wave 01
     segments:
-    - prefab: {fileID: 6020726837121102835, guid: 467397588402d3946a8a48d4ea5e1e10, type: 3}
+    - tStartEnd: {x: 0, y: 0}
+      spawnFrequency: 0
+      prefab: {fileID: 6020726837121102835, guid: 467397588402d3946a8a48d4ea5e1e10, type: 3}
   - name: Wave 02
     segments:
-    - prefab: {fileID: 1145956445820525747, guid: 8dc053489801806458ba901cb94639c4, type: 3}
-    - prefab: {fileID: 8456798738598824357, guid: 4040b5e82f2a43043aa4417c9c32db18, type: 3}
+    - tStartEnd: {x: 0, y: 0}
+      spawnFrequency: 0
+      prefab: {fileID: 1145956445820525747, guid: 8dc053489801806458ba901cb94639c4, type: 3}
+    - tStartEnd: {x: 0, y: 0}
+      spawnFrequency: 0
+      prefab: {fileID: 8456798738598824357, guid: 4040b5e82f2a43043aa4417c9c32db18, type: 3}
 --- !u!1 &1998213816
 GameObject:
   m_ObjectHideFlags: 0
