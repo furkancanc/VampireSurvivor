@@ -6535,6 +6535,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   candyPrefab: {fileID: 2802922702207869363, guid: 185c2196f078d1746ad7d095c9cf2dcb, type: 3}
+  cashPrefab: {fileID: 5652570196499927638, guid: fcaeaf5f708460e458b8ec195016a383, type: 3}
 --- !u!1 &2000711896
 GameObject:
   m_ObjectHideFlags: 0
