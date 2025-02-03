@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class WaveManager : MonoBehaviour
 {
+    [Header("Elements")]
+    [SerializeField] private Player player;
+
     [Header("Settings")]
     [SerializeField] private float waveDuration;
     private float timer;
@@ -50,12 +53,24 @@ public class WaveManager : MonoBehaviour
 
             if (timeSinceSegmentStart / spawnDelay > localCounters[i])
             {
-                Instantiate(segment.prefab, Vector2.zero, Quaternion.identity, transform);
+                Instantiate(segment.prefab, GetSpawnPosition(), Quaternion.identity, transform);
                 ++localCounters[i];
             }
         }
 
         timer += Time.deltaTime;
+    }
+
+    private Vector2 GetSpawnPosition()
+    {
+        Vector2 direction = Random.onUnitSphere;
+        Vector2 offset = direction.normalized * Random.Range(6, 10);
+        Vector2 targetPosition = (Vector2)player.transform.position + offset;
+
+        targetPosition.x = Mathf.Clamp(targetPosition.x, -18, 18);
+        targetPosition.y = Mathf.Clamp(targetPosition.y, -8, 8);
+
+        return targetPosition;
     }
 }
 
