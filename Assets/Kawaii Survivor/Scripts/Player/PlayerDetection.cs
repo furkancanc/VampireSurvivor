@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlayerDetection : MonoBehaviour
 {
     [Header("Colliders")]
-    [SerializeField] private CircleCollider2D daveCollider;
+    [SerializeField] private CircleCollider2D collectableCollider;
 
     //private void FixedUpdate()
     //{
@@ -22,24 +22,14 @@ public class PlayerDetection : MonoBehaviour
     //}
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.TryGetComponent(out Candy candy))
+        if (collider.TryGetComponent(out ICollectable collectable))
         {
-            if (!collider.IsTouching(daveCollider))
+            if (!collider.IsTouching(collectableCollider))
             {
                 return;
             }
 
-            candy.Collect(GetComponent<Player>());
-        }
-
-        if (collider.TryGetComponent(out Cash cash))
-        {
-            if (!collider.IsTouching(daveCollider))
-            {
-                return;
-            }
-
-            cash.Collect(GetComponent<Player>());
+            collectable.Collect(GetComponent<Player>());
         }
     }
 }

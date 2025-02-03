@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class Cash : MonoBehaviour
+public class Cash : MonoBehaviour, ICollectable
 {
     private bool collected;
 
