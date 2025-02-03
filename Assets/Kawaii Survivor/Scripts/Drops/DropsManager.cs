@@ -34,7 +34,8 @@ public class DropsManager : MonoBehaviour
             CandyActionOnRelease, 
             CandyActionOnDestroy);
 
-        cashPool = new ObjectPool<Cash>(CashCreateFunction, 
+        cashPool = new ObjectPool<Cash>(
+            CashCreateFunction, 
             CashActionOnGet, 
             CashActionOnRelease, 
             CashActionOnDestroy);
@@ -42,12 +43,12 @@ public class DropsManager : MonoBehaviour
 
     private Candy CandyCreateFunction()                 => Instantiate(candyPrefab, transform);
     private void CandyActionOnGet(Candy candy)          => candy.gameObject.SetActive(true);
-    private void CandyActionOnRelease(Candy candy)      => candy.gameObject.SetActive(true);
+    private void CandyActionOnRelease(Candy candy)      => candy.gameObject.SetActive(false);
     private void CandyActionOnDestroy(Candy candy)      => Destroy(candy.gameObject);
 
     private Cash CashCreateFunction()                   => Instantiate(cashPrefab, transform);
     private void CashActionOnGet(Cash cash)             => cash.gameObject.SetActive(true);
-    private void CashActionOnRelease(Cash cash)         => cash.gameObject.SetActive(true);
+    private void CashActionOnRelease(Cash cash)         => cash.gameObject.SetActive(false);
     private void CashActionOnDestroy(Cash cash)         => Destroy(cash.gameObject);
 
     private void EnemyPassedAwayCallback(Vector2 enemyPosition)
@@ -55,7 +56,7 @@ public class DropsManager : MonoBehaviour
         bool shouldSpawnCash = UnityEngine.Random.Range(0, 101) <= 20;
 
         DroppableCurrency droppable = shouldSpawnCash ? cashPool.Get() : candyPool.Get();
-        DroppableCurrency droppableInstance = Instantiate(droppable, enemyPosition, Quaternion.identity, transform);
+        droppable.transform.position = enemyPosition;
     }
 
     public void ReleaseCandy(Candy candy)               => candyPool.Release(candy);
