@@ -28,7 +28,7 @@ public class WaveManager : MonoBehaviour, IGameStateListener
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        StartWave(currentWaveIndex);
+        
     }
 
     // Update is called once per frame
@@ -116,6 +116,11 @@ public class WaveManager : MonoBehaviour, IGameStateListener
         }
     }
 
+    private void StartNextWave()
+    {
+        StartWave(currentWaveIndex);
+    }
+
     private void DefeatAllEnemies()
     {
         transform.Clear();
@@ -135,7 +140,12 @@ public class WaveManager : MonoBehaviour, IGameStateListener
 
     public void GameStateChangedCallback(GameState gameState)
     {
-        Debug.Log($"Wave Manager knows that the new gameState is {gameState}");
+        switch (gameState)
+        {
+            case GameState.GAME:
+                StartNextWave();
+                break;
+        }
     }
 }
 

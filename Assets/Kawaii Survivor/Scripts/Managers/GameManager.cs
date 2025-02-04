@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour
         SetGameState(GameState.MENU);
     }
 
+    public void StartGame() => SetGameState(GameState.GAME);
+
     public void SetGameState(GameState gameState)
     {
         IEnumerable<IGameStateListener> gameStateListeners = 
