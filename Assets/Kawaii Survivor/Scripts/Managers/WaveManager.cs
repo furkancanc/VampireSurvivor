@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(WaveManagerUI))]
-public class WaveManager : MonoBehaviour
+public class WaveManager : MonoBehaviour, IGameStateListener
 {
     [Header("Elements")]
     [SerializeField] private Player player;
@@ -131,6 +131,11 @@ public class WaveManager : MonoBehaviour
         targetPosition.y = Mathf.Clamp(targetPosition.y, -8, 8);
 
         return targetPosition;
+    }
+
+    public void GameStateChangedCallback(GameState gameState)
+    {
+        Debug.Log($"Wave Manager knows that the new gameState is {gameState}");
     }
 }
 

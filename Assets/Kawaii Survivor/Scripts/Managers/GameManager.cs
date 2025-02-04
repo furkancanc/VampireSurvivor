@@ -1,3 +1,6 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -20,23 +23,35 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Application.targetFrameRate = 60;
+        SetGameState(GameState.MENU);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetGameState(GameState gameState)
     {
-        
+        IEnumerable<IGameStateListener> gameStateListeners = 
+            FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None).
+            OfType<IGameStateListener>();
+
+        foreach(IGameStateListener gameStateListener in gameStateListeners)
+        {
+            gameStateListener.GameStateChangedCallback(gameState);
+        }
     }
 
     public void WaveCompletedCallback()
     {
         if (Player.instance.HasLeveledUp())
         {
-            Debug.Log("Show Wave Transition Panel");
+            SetGameState(GameState.WAVETRANSITION);
         }
         else
         {
-            Debug.Log("Display shop!");
+            SetGameState(GameState.SHOP);
         }
     }
+}
+
+public interface IGameStateListener
+{
+    void GameStateChangedCallback(GameState gameState);
 }
