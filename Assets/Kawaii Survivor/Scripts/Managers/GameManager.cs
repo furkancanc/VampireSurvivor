@@ -30,6 +30,13 @@ public class GameManager : MonoBehaviour
 
     public void WaveCompletedCallback()
     {
-
+        if (Player.instance.HasLeveledUp())
+        {
+            Debug.Log("Show Wave Transition Panel");
+        }
+        else
+        {
+            Debug.Log("Display shop!");
+        }
     }
 }

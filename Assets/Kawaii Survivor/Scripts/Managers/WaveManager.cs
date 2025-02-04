@@ -112,7 +112,7 @@ public class WaveManager : MonoBehaviour
         }
         else
         {
-            GameManager.instance.WaveCompleteCallback();
+            GameManager.instance.WaveCompletedCallback();
         }
     }
 
