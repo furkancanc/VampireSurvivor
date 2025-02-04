@@ -3,10 +3,12 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(WaveManagerUI))]
 public class WaveManager : MonoBehaviour
 {
     [Header("Elements")]
     [SerializeField] private Player player;
+    private WaveManagerUI UI;
 
     [Header("Settings")]
     [SerializeField] private float waveDuration;
@@ -17,6 +19,11 @@ public class WaveManager : MonoBehaviour
     [Header("Waves")]
     [SerializeField] private Wave[] waves;
     private List<float> localCounters = new List<float>();
+
+    private void Awake()
+    {
+        UI = GetComponent<WaveManagerUI>();
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -35,6 +42,9 @@ public class WaveManager : MonoBehaviour
         if (timer < waveDuration)
         {
             ManageCurrentWave();
+
+            string timerString = ((int)(waveDuration - timer)).ToString();
+            UI.UpdateTimerText(timerString);
         }
         else
         {
@@ -44,6 +54,8 @@ public class WaveManager : MonoBehaviour
 
     private void StartWave(int waveIndex)
     {
+        UI.UpdateWaveText("Wave " + (currentWaveIndex + 1) + " / " + waves.Length);
+
         localCounters.Clear();
         foreach(WaveSegment segment in waves[waveIndex].segments)
         {
@@ -94,7 +106,9 @@ public class WaveManager : MonoBehaviour
 
         if (currentWaveIndex >= waves.Length)
         {
-            Debug.Log("Waves completed!");
+            UI.UpdateTimerText("");
+            UI.UpdateWaveText("Stage Completed!");
+
         }
         else
         {
