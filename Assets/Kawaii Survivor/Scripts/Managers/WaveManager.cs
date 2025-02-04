@@ -11,6 +11,7 @@ public class WaveManager : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private float waveDuration;
     private float timer;
+    private bool isTimerOn;
 
     [Header("Waves")]
     [SerializeField] private Wave[] waves;
@@ -20,15 +21,35 @@ public class WaveManager : MonoBehaviour
     void Start()
     {
         localCounters.Add(1);
+
+        StartWave(0);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!isTimerOn)
+        {
+            return;
+        }
+
         if (timer < waveDuration)
         {
             ManageCurrentWave();
         }
+    }
+
+    private void StartWave(int waveIndex)
+    {
+        localCounters.Clear();
+        foreach(WaveSegment segment in waves[waveIndex].segments)
+        {
+            localCounters.Add(1);
+        }
+
+
+        timer = 0;
+        isTimerOn = true;
     }
 
     private void ManageCurrentWave()
