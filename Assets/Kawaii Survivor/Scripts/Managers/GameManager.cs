@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     }
 
     public void StartGame() => SetGameState(GameState.GAME);
+    public void StartShop() => SetGameState(GameState.SHOP);
 
     public void SetGameState(GameState gameState)
     {
