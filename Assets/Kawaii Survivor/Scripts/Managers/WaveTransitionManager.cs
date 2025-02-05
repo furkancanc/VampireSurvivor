@@ -49,8 +49,13 @@ public class WaveTransitionManager : MonoBehaviour, IGameStateListener
 
             upgradeContainers[i].Button.onClick.RemoveAllListeners();
             upgradeContainers[i].Button.onClick.AddListener(() => action?.Invoke());
-
+            upgradeContainers[i].Button.onClick.AddListener(() => BonusSelectedCallBack());
         }
+    }
+
+    private void BonusSelectedCallBack()
+    {
+        GameManager.instance.WaveCompletedCallback();
     }
 
     private Action GetActionToPerform(Stat stat, out string buttonString)
