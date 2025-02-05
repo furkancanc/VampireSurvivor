@@ -109,6 +109,7 @@ public class WaveManager : MonoBehaviour, IGameStateListener
             UI.UpdateTimerText("");
             UI.UpdateWaveText("Stage Completed!");
 
+            GameManager.instance.SetGameState(GameState.STAGECOMPLETE);
         }
         else
         {
@@ -145,6 +146,11 @@ public class WaveManager : MonoBehaviour, IGameStateListener
             case GameState.GAME:
                 StartNextWave();
                 break;
+            case GameState.GAMEOVER:
+                isTimerOn = false;
+                DefeatAllEnemies();
+                break;
+
         }
     }
 }
