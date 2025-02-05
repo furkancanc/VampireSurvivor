@@ -26,3 +26,24 @@ public enum Stat
     Dodge,
     LifeSteal
 }
+
+public static class Enums
+{
+    public static string FormatStatName(Stat stat)
+    {
+        string formated = "";
+        string unformatedString = stat.ToString();
+
+        for (int i = 0; i < unformatedString.Length; ++i)
+        {
+            if (char.IsUpper(unformatedString[i]))
+            {
+                formated += " ";
+            }
+
+            formated += unformatedString[i];
+        }
+
+        return formated;
+    }
+}

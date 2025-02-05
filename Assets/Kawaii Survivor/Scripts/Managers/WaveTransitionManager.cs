@@ -40,7 +40,7 @@ public class WaveTransitionManager : MonoBehaviour, IGameStateListener
             int randomIndex = Random.Range(0, Enum.GetValues(typeof(Stat)).Length);
             Stat stat = (Stat)Enum.GetValues(typeof(Stat)).GetValue(randomIndex);
 
-            string randomStatString = stat.ToString();
+            string randomStatString = Enums.FormatStatName(stat);
 
             upgradeContainers[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = randomStatString;
 
