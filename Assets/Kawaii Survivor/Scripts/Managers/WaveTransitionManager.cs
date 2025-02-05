@@ -44,9 +44,26 @@ public class WaveTransitionManager : MonoBehaviour, IGameStateListener
 
             upgradeContainers[i].Configure(null, randomStatString, Random.Range(0, 100).ToString());
 
-            upgradeContainers[i].Button.onClick.RemoveAllListeners();
-            upgradeContainers[i].Button.onClick.AddListener(() => Debug.Log(randomStatString));
+            Action action = GetActionToPerform(stat);
 
+            upgradeContainers[i].Button.onClick.RemoveAllListeners();
+            upgradeContainers[i].Button.onClick.AddListener(() => action?.Invoke());
+
+        }
+    }
+
+    private Action GetActionToPerform(Stat stat)
+    {
+        switch (stat)
+        {
+            case Stat.Attack:
+                return () => Debug.Log("Improving Attack by " + 5);
+            case Stat.Range:
+                return () => Debug.Log("Improving Range by " + 5);
+            case Stat.MoveSpeed:
+                return () => UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+            default:
+                return () => Debug.Log("Invalid stat");
         }
     }
 }
