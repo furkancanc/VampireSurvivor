@@ -10,6 +10,7 @@ public class WaveTransitionManager : MonoBehaviour, IGameStateListener
 {
     [Header("Elements")]
     [SerializeField] private UpgradeContainer[] upgradeContainers;
+    [SerializeField] private PlayerStatsManager playerStatsManager;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -111,7 +112,7 @@ public class WaveTransitionManager : MonoBehaviour, IGameStateListener
                 return () => Debug.Log("Invalid stat");
         }
 
-        return () => Debug.Log("Processed");
+        return () => playerStatsManager.AddPlayerStat(stat, value);
     }
 
 }
