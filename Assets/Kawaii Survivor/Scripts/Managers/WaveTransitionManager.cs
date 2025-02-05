@@ -9,7 +9,7 @@ using Random = UnityEngine.Random;
 public class WaveTransitionManager : MonoBehaviour, IGameStateListener
 {
     [Header("Elements")]
-    [SerializeField] private Button[] upgradeContainers;
+    [SerializeField] private UpgradeContainer[] upgradeContainers;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -42,10 +42,10 @@ public class WaveTransitionManager : MonoBehaviour, IGameStateListener
 
             string randomStatString = Enums.FormatStatName(stat);
 
-            upgradeContainers[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = randomStatString;
+            upgradeContainers[i].Configure(null, randomStatString, Random.Range(0, 100).ToString());
 
-            upgradeContainers[i].onClick.RemoveAllListeners();
-            upgradeContainers[i].onClick.AddListener(() => Debug.Log(randomStatString));
+            upgradeContainers[i].Button.onClick.RemoveAllListeners();
+            upgradeContainers[i].Button.onClick.AddListener(() => Debug.Log(randomStatString));
 
         }
     }
