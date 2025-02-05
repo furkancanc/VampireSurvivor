@@ -44,6 +44,9 @@ public class WaveTransitionManager : MonoBehaviour, IGameStateListener
 
             upgradeContainers[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = randomStatString;
 
+            upgradeContainers[i].onClick.RemoveAllListeners();
+            upgradeContainers[i].onClick.AddListener(() => Debug.Log(randomStatString));
+
         }
     }
 }
