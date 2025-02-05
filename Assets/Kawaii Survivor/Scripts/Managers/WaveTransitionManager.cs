@@ -42,9 +42,10 @@ public class WaveTransitionManager : MonoBehaviour, IGameStateListener
 
             string randomStatString = Enums.FormatStatName(stat);
 
-            upgradeContainers[i].Configure(null, randomStatString, Random.Range(0, 100).ToString());
+            string buttonString;
+            Action action = GetActionToPerform(stat, out buttonString);
+            upgradeContainers[i].Configure(null, randomStatString, buttonString);
 
-            Action action = GetActionToPerform(stat);
 
             upgradeContainers[i].Button.onClick.RemoveAllListeners();
             upgradeContainers[i].Button.onClick.AddListener(() => action?.Invoke());
@@ -52,18 +53,60 @@ public class WaveTransitionManager : MonoBehaviour, IGameStateListener
         }
     }
 
-    private Action GetActionToPerform(Stat stat)
+    private Action GetActionToPerform(Stat stat, out string buttonString)
     {
+        float value;
+  
+        value = Random.Range(1, 10);
+        buttonString = "+" + value.ToString() + "%";
+
         switch (stat)
         {
             case Stat.Attack:
-                return () => Debug.Log("Improving Attack by " + 5);
-            case Stat.Range:
-                return () => Debug.Log("Improving Range by " + 5);
+                value = Random.Range(1, 10);
+                break;
+            case Stat.AttackSpeed:
+                value = Random.Range(1, 10);
+                break;
+            case Stat.CriticalChance:
+                value = Random.Range(1, 10);
+                break;
+            case Stat.CriticalPercent:
+                value = Random.Range(1f, 2f);
+                buttonString = "+" + value.ToString("F2") + "x";
+                break;
             case Stat.MoveSpeed:
-                return () => UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+                value = Random.Range(1, 10);
+                break;
+            case Stat.MaxHealth:
+                value = Random.Range(1, 5);
+                buttonString = "+" + value;
+                break;
+            case Stat.Range:
+                value = Random.Range(1f, 5f);
+                buttonString = "+" + value.ToString();
+                break;
+            case Stat.HealthRecoverySpeed:
+                value = Random.Range(1, 10);
+                break;
+            case Stat.Armor:
+                value = Random.Range(1, 10);
+                break;
+            case Stat.Luck:
+                value = Random.Range(1, 10);
+                break;
+            case Stat.Dodge:
+                value = Random.Range(1, 10);
+                break;
+            case Stat.LifeSteal:
+                value = Random.Range(1, 10);
+                break;
+
             default:
                 return () => Debug.Log("Invalid stat");
         }
+
+        return () => Debug.Log("Processed");
     }
+
 }
