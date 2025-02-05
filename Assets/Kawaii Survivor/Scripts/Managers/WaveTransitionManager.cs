@@ -1,6 +1,10 @@
+using NaughtyAttributes;
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+
+using Random = UnityEngine.Random;
 
 public class WaveTransitionManager : MonoBehaviour, IGameStateListener
 {
@@ -28,11 +32,17 @@ public class WaveTransitionManager : MonoBehaviour, IGameStateListener
         }
     }
 
+    [Button]
     private void ConfigureUpgradeContainers()
     {
         for (int i = 0; i < upgradeContainers.Length; ++i)
         {
-            upgradeContainers[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Upgrade " + i;
+            int randomIndex = Random.Range(0, Enum.GetValues(typeof(Stat)).Length);
+            Stat stat = (Stat)Enum.GetValues(typeof(Stat)).GetValue(randomIndex);
+
+            string randomStatString = stat.ToString();
+
+            upgradeContainers[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = randomStatString;
 
         }
     }

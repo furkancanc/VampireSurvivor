@@ -6209,7 +6209,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xpBar: {fileID: 192509599}
   levelText: {fileID: 544251844}
-  DEBUG: 0
+  DEBUG: 1
 --- !u!1 &753766335
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,3 +10,19 @@ public enum GameState
     WAVETRANSITION,
     SHOP
 }
+
+public enum Stat
+{
+    Attack,
+    AttackSpeed,
+    CriticalChance,
+    CriticalPercent,
+    MoveSpeed,
+    MaxHealth,
+    Range,
+    HealthRecoverySpeed,
+    Armor,
+    Luck,
+    Dodge,
+    LifeSteal
+}
