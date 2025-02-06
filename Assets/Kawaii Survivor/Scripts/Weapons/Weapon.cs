@@ -2,14 +2,18 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Weapon : MonoBehaviour
+public abstract class Weapon : MonoBehaviour, IPlayerStatsDependency
 {
+    [Header("Data")]
+    [field: SerializeField] public WeaponDataSO WeaponData { get; private set; }
+
     [Header("Settings")]
     [SerializeField] private float range;
     [SerializeField] protected LayerMask enemyMask;
 
     [Header("Attack")]
-    [SerializeField] protected int damage;
+    [SerializeField] protected int baseDamage;
+    protected int damage;
     [SerializeField] protected float attackDelay;
     [SerializeField] protected Animator animator;
 
@@ -22,7 +26,7 @@ public abstract class Weapon : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        damage = baseDamage;
     }
 
     // Update is called once per frame
@@ -77,4 +81,6 @@ public abstract class Weapon : MonoBehaviour
         Gizmos.color = Color.magenta;
         Gizmos.DrawWireSphere(transform.position, range);
     }
+
+    public abstract void UpdateStats(PlayerStatsManager playerStatsManager);
 }
