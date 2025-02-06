@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+using Random = UnityEngine.Random;
 
 public class PlayerHealth : MonoBehaviour, IPlayerStatsDependency
 {
@@ -12,10 +13,14 @@ public class PlayerHealth : MonoBehaviour, IPlayerStatsDependency
     private float health;
     private float armor;
     private float lifeSteal;
+    private float dodge;
 
     [Header("Elements")]
     [SerializeField] private Slider healthSlider;
     [SerializeField] private TextMeshProUGUI healthText;
+
+    [Header("Actions")]
+    public static Action<Vector2> onAttackDodged;
 
     private void Start()
     {
@@ -43,6 +48,12 @@ public class PlayerHealth : MonoBehaviour, IPlayerStatsDependency
 
     public void TakeDamage(int damage)
     {
+        if (ShouldDodge())
+        {
+            onAttackDodged?.Invoke(transform.position);
+            return;
+        }
+
         float realDamage = damage * Mathf.Clamp(1 - (armor / 1000), 0, 10000); 
         realDamage = Mathf.Min(damage, health);
         health -= damage;
@@ -54,6 +65,11 @@ public class PlayerHealth : MonoBehaviour, IPlayerStatsDependency
         {
             PassAway();
         }
+    }
+
+    private bool ShouldDodge()
+    {
+        return Random.Range(0f, 100f) < dodge;
     }
 
     private void PassAway()
@@ -80,6 +96,7 @@ public class PlayerHealth : MonoBehaviour, IPlayerStatsDependency
 
         armor = playerStatsManager.GetStatValue(Stat.Armor);
         lifeSteal = playerStatsManager.GetStatValue(Stat.LifeSteal) / 100;
+        dodge = playerStatsManager.GetStatValue(Stat.Dodge);
     }
 }
 
