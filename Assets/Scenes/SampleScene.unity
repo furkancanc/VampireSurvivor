@@ -6094,7 +6094,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ae7975f08297b140bfc51624b7e7388, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  baseMaxHealth: 5
   healthSlider: {fileID: 1517990914}
   healthText: {fileID: 700408487}
 --- !u!114 &747806552
@@ -6124,7 +6124,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xpBar: {fileID: 192509599}
   levelText: {fileID: 544251844}
-  DEBUG: 1
+  DEBUG: 0
 --- !u!1 &753766335
 GameObject:
   m_ObjectHideFlags: 0

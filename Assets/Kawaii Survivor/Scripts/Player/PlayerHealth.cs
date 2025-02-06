@@ -3,10 +3,11 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class PlayerHealth : MonoBehaviour
+public class PlayerHealth : MonoBehaviour, IPlayerStatsDependency
 {
     [Header("Settings")]
-    [SerializeField] private int maxHealth;
+    [SerializeField] private int baseMaxHealth;
+    private int maxHealth;
     private int health;
 
     [Header("Elements")]
@@ -15,8 +16,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void Start()
     {
-        health = maxHealth;
-        UpdateUI();
+        
     }
 
     public void TakeDamage(int damage)
@@ -43,6 +43,16 @@ public class PlayerHealth : MonoBehaviour
         healthSlider.value = healthBarValue;
 
         healthText.text = health + " / " + maxHealth;
+    }
+
+    public void UpdateStats(PlayerStatsManager playerStatsManager)
+    {
+        float addedHealth = playerStatsManager.GetStatValue(Stat.MaxHealth);
+        maxHealth = baseMaxHealth + (int)addedHealth;
+        maxHealth = Mathf.Max(maxHealth, 1);
+
+        health = maxHealth;
+        UpdateUI();
     }
 }
 

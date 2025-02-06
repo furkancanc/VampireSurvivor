@@ -11,7 +11,9 @@ public class PlayerStatsManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        addends.Add(Stat.MaxHealth, 10);
+
+        UpdatePlayerStats();
     }
 
     // Update is called once per frame
@@ -32,6 +34,11 @@ public class PlayerStatsManager : MonoBehaviour
         }
 
         UpdatePlayerStats();
+    }
+
+    public float GetStatValue(Stat stat)
+    {
+        return addends[stat];
     }
 
     private void UpdatePlayerStats()
