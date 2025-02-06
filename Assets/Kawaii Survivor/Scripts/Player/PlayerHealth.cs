@@ -14,6 +14,9 @@ public class PlayerHealth : MonoBehaviour, IPlayerStatsDependency
     private float armor;
     private float lifeSteal;
     private float dodge;
+    private float healthRecoverySpeed;
+    private float healthRecoveryTimer;
+    private float healthRecoveryDuration;
 
     [Header("Elements")]
     [SerializeField] private Slider healthSlider;
@@ -25,6 +28,29 @@ public class PlayerHealth : MonoBehaviour, IPlayerStatsDependency
     private void Start()
     {
         Enemy.onDamageTaken += EnemyTookDamageCallback;   
+    }
+
+    private void Update()
+    {
+        if (health < maxHealth)
+        {
+            RecoverHealth();
+        }
+    }
+
+    private void RecoverHealth()
+    {
+        healthRecoveryTimer += Time.deltaTime;
+
+        if (healthRecoveryTimer >= healthRecoveryDuration)
+        {
+            healthRecoveryTimer = 0;
+
+            float healthToAdd = Mathf.Min(.1f, maxHealth - health);
+            health += healthToAdd;
+
+            UpdateUI();
+        }
     }
 
     private void OnDestroy()
@@ -97,6 +123,9 @@ public class PlayerHealth : MonoBehaviour, IPlayerStatsDependency
         armor = playerStatsManager.GetStatValue(Stat.Armor);
         lifeSteal = playerStatsManager.GetStatValue(Stat.LifeSteal) / 100;
         dodge = playerStatsManager.GetStatValue(Stat.Dodge);
+
+        healthRecoverySpeed = Mathf.Max(.0001f, playerStatsManager.GetStatValue(Stat.HealthRecoverySpeed));
+        healthRecoveryDuration = 1f / healthRecoverySpeed;
     }
 }
 
