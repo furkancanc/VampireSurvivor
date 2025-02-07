@@ -18,8 +18,6 @@ public class WeaponSelectionContainer : MonoBehaviour
         nameText.text = name;
 
         Color imageColor = ColorHolder.GetColor(level);
-        Debug.Log(imageColor);
-
         foreach (Image image in levelDependentImages)
         {
             image.color = imageColor;
