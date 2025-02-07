@@ -16,7 +16,7 @@ MonoBehaviour:
   <sprite>k__BackingField: {fileID: 21300000, guid: 84f07b27a38eda042b5858622cbeaf52, type: 3}
   <PurchasePrice>k__BackingField: 100
   <Prefab>k__BackingField: {fileID: 0}
-  attack: 100
+  attack: 10
   attackSpeed: 0
   criticalChance: 0
   criticalPerccent: 0

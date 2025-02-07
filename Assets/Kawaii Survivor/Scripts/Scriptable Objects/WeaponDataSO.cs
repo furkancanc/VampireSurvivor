@@ -34,4 +34,9 @@ public class WeaponDataSO : ScriptableObject
 
         private set { }
     }
+
+    public float GetStatValue(Stat stat)
+    {
+        return BaseStats[stat];
+    }
 }
