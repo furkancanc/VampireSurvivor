@@ -26,20 +26,9 @@ public abstract class Weapon : MonoBehaviour, IPlayerStatsDependency
     [SerializeField] protected float aimLerp;
 
     [Header("Level")]
-    [field: SerializeField] public int Level { get; private set; }
+    public int Level { get; private set; }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    
     protected Enemy GetClosestEnemy()
     {
         Enemy closestEnemy = null;
@@ -104,5 +93,10 @@ public abstract class Weapon : MonoBehaviour, IPlayerStatsDependency
             range = WeaponData.GetStatValue(Stat.Range) * multiplier;
         }
         
+    }
+    public void UpgradeTo(int targetLevel)
+    {
+        Level = targetLevel;
+        ConfigureStats();
     }
 }
