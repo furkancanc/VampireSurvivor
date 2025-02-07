@@ -36,7 +36,10 @@ public class WeaponSelectionManager : MonoBehaviour, IGameStateListener
         WeaponSelectionContainer containerInstance = Instantiate(weaponContainerPrefab, containersParent.transform);
 
         WeaponDataSO weaponData = starterWeapons[Random.Range(0, starterWeapons.Length)];
-        containerInstance.Configure(weaponData.sprite, weaponData.Name);
+
+        int level = Random.Range(0, 4);
+
+        containerInstance.Configure(weaponData.sprite, weaponData.Name, level);
 
         containerInstance.Button.onClick.RemoveAllListeners();
         containerInstance.Button.onClick.AddListener(() => WeaponSelectedCallback(containerInstance, weaponData));
