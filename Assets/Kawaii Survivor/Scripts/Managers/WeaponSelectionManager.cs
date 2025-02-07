@@ -37,5 +37,23 @@ public class WeaponSelectionManager : MonoBehaviour, IGameStateListener
 
         WeaponDataSO weaponData = starterWeapons[Random.Range(0, starterWeapons.Length)];
         containerInstance.Configure(weaponData.sprite, weaponData.Name);
+
+        containerInstance.Button.onClick.RemoveAllListeners();
+        containerInstance.Button.onClick.AddListener(() => WeaponSelectedCallback(containerInstance, weaponData));
+    }
+
+    private void WeaponSelectedCallback(WeaponSelectionContainer containerInstance, WeaponDataSO weaponData)
+    {
+        foreach (WeaponSelectionContainer container in containersParent.GetComponentsInChildren<WeaponSelectionContainer>())
+        {
+            if (container == containerInstance)
+            {
+                container.Select();
+            }
+            else
+            {
+                container.Deselect();
+            }
+        }
     }
 }
