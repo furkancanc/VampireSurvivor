@@ -6,6 +6,9 @@ public class WeaponSelectionManager : MonoBehaviour, IGameStateListener
     [SerializeField] private Transform containersParent;
     [SerializeField] private WeaponSelectionContainer weaponContainerPrefab;
 
+    [Header("Data")]
+    [SerializeField] private WeaponDataSO[] starterWeapons;
+
     public void GameStateChangedCallback(GameState gameState)
     {
         switch (gameState)
@@ -31,5 +34,8 @@ public class WeaponSelectionManager : MonoBehaviour, IGameStateListener
     private void GenerateWeaponContainer()
     {
         WeaponSelectionContainer containerInstance = Instantiate(weaponContainerPrefab, containersParent.transform);
+
+        WeaponDataSO weaponData = starterWeapons[Random.Range(0, starterWeapons.Length)];
+        containerInstance.Configure(weaponData.sprite, weaponData.Name);
     }
 }

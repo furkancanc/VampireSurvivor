@@ -1,16 +1,16 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WeaponSelectionContainer : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [Header("Elements")]
+    [SerializeField] private Image icon;
+    [SerializeField] private TextMeshProUGUI nameText;
 
-    // Update is called once per frame
-    void Update()
+    public void Configure(Sprite sprite, string name)
     {
-        
+        icon.sprite = sprite;
+        nameText.text = name;
     }
 }
