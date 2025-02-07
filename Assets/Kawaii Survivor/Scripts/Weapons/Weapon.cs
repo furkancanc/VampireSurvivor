@@ -8,7 +8,7 @@ public abstract class Weapon : MonoBehaviour, IPlayerStatsDependency
     [field: SerializeField] public WeaponDataSO WeaponData { get; private set; }
 
     [Header("Settings")]
-    [SerializeField] private float range;
+    [SerializeField] protected float range;
     [SerializeField] protected LayerMask enemyMask;
 
     [Header("Attack")]
@@ -17,7 +17,10 @@ public abstract class Weapon : MonoBehaviour, IPlayerStatsDependency
     [SerializeField] protected Animator animator;
 
     protected float attackTimer;
-    protected List<Enemy> damagedEnemies = new List<Enemy>();
+
+    [Header("Critical")]
+    protected int criticalChance;
+    protected float criticalPercent;
 
     [Header("Animations")]
     [SerializeField] protected float aimLerp;
@@ -72,7 +75,7 @@ public abstract class Weapon : MonoBehaviour, IPlayerStatsDependency
         if (Random.Range(0, 101) <= 50)
         {
             isCriticalHit = true;
-            return damage * 2;
+            return Mathf.RoundToInt(damage * criticalPercent);
         }
 
         return damage;
@@ -90,5 +93,16 @@ public abstract class Weapon : MonoBehaviour, IPlayerStatsDependency
     {
         float multiplier = 1 + (float)Level / 3;
         damage = Mathf.RoundToInt(WeaponData.GetStatValue(Stat.Attack) * multiplier);
+
+        attackDelay = 1f / (WeaponData.GetStatValue(Stat.AttackSpeed) * multiplier);
+
+        criticalChance = Mathf.RoundToInt(WeaponData.GetStatValue(Stat.CriticalChance) * multiplier);
+        criticalPercent = WeaponData.GetStatValue(Stat.CriticalPercent) * multiplier;
+
+        if (WeaponData.Prefab.GetType() == typeof(RangeWeapon))
+        {
+            range = WeaponData.GetStatValue(Stat.Range) * multiplier;
+        }
+        
     }
 }

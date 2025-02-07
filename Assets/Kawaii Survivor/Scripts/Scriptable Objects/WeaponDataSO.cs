@@ -15,7 +15,7 @@ public class WeaponDataSO : ScriptableObject
     [SerializeField] private float attack;
     [SerializeField] private float attackSpeed;
     [SerializeField] private float criticalChance;
-    [SerializeField] private float criticalPerccent;
+    [SerializeField] private float criticalPercent;
     [SerializeField] private float range;
 
     public Dictionary<Stat, float> BaseStats
@@ -27,7 +27,7 @@ public class WeaponDataSO : ScriptableObject
                 { Stat.Attack, attack },
                 { Stat.AttackSpeed, attackSpeed },
                 { Stat.CriticalChance, criticalChance },
-                { Stat.CriticalPercent, criticalPerccent },
+                { Stat.CriticalPercent, criticalPercent },
                 { Stat.Range, range },
             };
         }
