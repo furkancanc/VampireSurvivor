@@ -18,7 +18,7 @@ public class WeaponSelectionContainer : MonoBehaviour
     public void Configure(Sprite sprite, string name, int level, WeaponDataSO weaponData)
     {
         icon.sprite = sprite;
-        nameText.text = name;
+        nameText.text = name + $" (lvl {level + 1})";
 
         Color imageColor = ColorHolder.GetColor(level);
         nameText.color = imageColor;
