@@ -28,12 +28,13 @@ public class WeaponSelectionContainer : MonoBehaviour
             image.color = imageColor;
         }
 
-        ConfigureStatContainers(weaponData);
+        Dictionary<Stat, float> calculatedStats = WeaponStatsCalculator.GetStats(weaponData, level);
+        ConfigureStatContainers(calculatedStats);
     }
 
-    private void ConfigureStatContainers(WeaponDataSO weaponData)
+    private void ConfigureStatContainers(Dictionary<Stat, float> calculatedStats)
     {
-        StatContainerManager.GenerateStatContainers(weaponData.BaseStats, statContainersParent);
+        StatContainerManager.GenerateStatContainers(calculatedStats, statContainersParent);
     }
 
     public void Select()
