@@ -84,8 +84,6 @@ public class PlayerHealth : MonoBehaviour, IPlayerStatsDependency
         realDamage = Mathf.Min(damage, health);
         health -= damage;
 
-        Debug.Log("Real Damage : " + realDamage);
-
         UpdateUI();
         if (health <= 0)
         {
