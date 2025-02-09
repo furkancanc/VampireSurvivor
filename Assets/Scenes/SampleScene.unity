@@ -5863,8 +5863,10 @@ GameObject:
   - component: {fileID: 747806552}
   - component: {fileID: 747806553}
   - component: {fileID: 747806554}
+  - component: {fileID: 747806555}
   - component: {fileID: 747806547}
   - component: {fileID: 747806549}
+  - component: {fileID: 747806556}
   m_Layer: 7
   m_Name: Dave
   m_TagString: Untagged
@@ -6042,6 +6044,33 @@ MonoBehaviour:
   - {fileID: 1883348998}
   - {fileID: 1160407917}
   - {fileID: 1525116072}
+--- !u!114 &747806555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 747806544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fc5d1d43b62b25478cdd4efe95e9d6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Objects>k__BackingField:
+  - {fileID: 11400000, guid: 217fa90885babc5449f3a4f016262f28, type: 2}
+--- !u!114 &747806556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 747806544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1db76ec4cdc06ab40bb70eb426b9d5d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerData: {fileID: 11400000, guid: b773d136019233a41af03f60e2e2b491, type: 2}
 --- !u!1 &753766335
 GameObject:
   m_ObjectHideFlags: 0

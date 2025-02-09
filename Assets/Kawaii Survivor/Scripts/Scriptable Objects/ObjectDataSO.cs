@@ -15,20 +15,6 @@ public class ObjectDataSO : ScriptableObject
 
     [SerializeField] private StatData[] statDatas;
 
-    [HorizontalLine]
-    [SerializeField] private float attack;
-    [SerializeField] private float attackSpeed;
-    [SerializeField] private float criticalChance;
-    [SerializeField] private float criticalPercent;
-    [SerializeField] private float moveSpeed;
-    [SerializeField] private float maxHealth;
-    [SerializeField] private float range;
-    [SerializeField] private float healthRecoverySpeed;
-    [SerializeField] private float armor;
-    [SerializeField] private float luck;
-    [SerializeField] private float dodge;
-    [SerializeField] private float lifeSteal;
-
     public Dictionary<Stat, float> BaseStats
     {
         get

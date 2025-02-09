@@ -11,7 +11,7 @@ public class PlayerStatsManager : MonoBehaviour
     [Header("Settings")]
     private Dictionary<Stat, float> playerStats = new Dictionary<Stat, float>();
     private Dictionary<Stat, float> addends = new Dictionary<Stat, float>();
-
+    private Dictionary<Stat, float> objectAddens = new Dictionary<Stat, float>();
     private void Awake()
     {
         playerStats = playerData.BaseStats;
@@ -19,6 +19,7 @@ public class PlayerStatsManager : MonoBehaviour
         foreach(KeyValuePair<Stat, float> kvp in playerStats)
         {
             addends.Add(kvp.Key, 0);
+            objectAddens.Add(kvp.Key, 0);
         }
     }
 
@@ -34,6 +35,16 @@ public class PlayerStatsManager : MonoBehaviour
         else
         {
             Debug.LogError($"The key {stat} has not been found, this is not normal behaviour!");
+        }
+
+        UpdatePlayerStats();
+    }
+
+    public void AddObject(Dictionary<Stat, float> objectStats)
+    {
+        foreach (KeyValuePair<Stat, float> kvp in playerStats)
+        {
+            objectAddens[kvp.Key] += kvp.Value;
         }
 
         UpdatePlayerStats();
