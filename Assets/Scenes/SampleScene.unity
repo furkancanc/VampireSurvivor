@@ -1021,6 +1021,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 152269383}
   m_CullTransparentMesh: 1
+--- !u!1 &156514108
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 156514109}
+  - component: {fileID: 156514110}
+  m_Layer: 0
+  m_Name: CurrenyManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &156514109
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 156514108}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1290385727}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &156514110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 156514108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 114cf4f21f15e0a4d816ce8c8575ff7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Currency>k__BackingField: 0
 --- !u!1 &192509597
 GameObject:
   m_ObjectHideFlags: 0
@@ -1372,7 +1417,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8995034543800599119, guid: 0b9be2bfea5a4b44ab855bf05ffdaf1c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 531.6666
       objectReference: {fileID: 0}
     - target: {fileID: 8995034543800599119, guid: 0b9be2bfea5a4b44ab855bf05ffdaf1c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6609,11 +6654,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eae804a204de4df42942faaf12ad6e87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerObjects: {fileID: 747806555}
+  playerStatsManager: {fileID: 747806556}
+  upgradeContainersParent: {fileID: 739308665}
   upgradeContainers:
   - {fileID: 529860886}
   - {fileID: 1178264381}
   - {fileID: 1764580221}
-  playerStatsManager: {fileID: 747806556}
   chestContainerPrefab: {fileID: 3167819353253181722, guid: d0005a7d6f1a6fa42b3a823d718d8e8e, type: 3}
   chestContainerParent: {fileID: 550045470}
 --- !u!1 &982368623
@@ -7641,6 +7688,7 @@ Transform:
   - {fileID: 899420222}
   - {fileID: 879890422}
   - {fileID: 2046288875}
+  - {fileID: 156514109}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1344731814
@@ -10249,7 +10297,7 @@ MonoBehaviour:
   cashPrefab: {fileID: 5652570196499927638, guid: fcaeaf5f708460e458b8ec195016a383, type: 3}
   chestPrefab: {fileID: 1540517032874288743, guid: c1b08a2268a38ff4daafbbab75991eda, type: 3}
   cashDropChance: 50
-  chestDropChance: 10
+  chestDropChance: 100
 --- !u!1 &2009713990
 GameObject:
   m_ObjectHideFlags: 0
@@ -10948,7 +10996,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8995034543800599119, guid: 0b9be2bfea5a4b44ab855bf05ffdaf1c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.000061035156
       objectReference: {fileID: 0}
     - target: {fileID: 8995034543800599119, guid: 0b9be2bfea5a4b44ab855bf05ffdaf1c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -11146,7 +11194,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8995034543800599119, guid: 0b9be2bfea5a4b44ab855bf05ffdaf1c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -531.6667
       objectReference: {fileID: 0}
     - target: {fileID: 8995034543800599119, guid: 0b9be2bfea5a4b44ab855bf05ffdaf1c, type: 3}
       propertyPath: m_LocalPosition.y
