@@ -22,9 +22,9 @@ public class PlayerObjects : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void AddObject(ObjectDataSO objectData)
     {
-        
+        Objects.Add(objectData);
+        playerStatsManager.AddObject(objectData.BaseStats);
     }
 }

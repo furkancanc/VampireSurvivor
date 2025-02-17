@@ -8,6 +8,9 @@ using Random = UnityEngine.Random;
 
 public class WaveTransitionManager : MonoBehaviour, IGameStateListener
 {
+    [Header("Player")]
+    [SerializeField] private PlayerObjects playerObjects;
+
     [Header("Elements")]
     [SerializeField] private PlayerStatsManager playerStatsManager;
     [SerializeField] private GameObject upgradeContainersParent;
@@ -41,6 +44,8 @@ public class WaveTransitionManager : MonoBehaviour, IGameStateListener
 
     private void TryOpenChest()
     {
+        chestContainerParent.Clear();
+
         if (chestsCollected > 0)
         {
             ShowObject();
@@ -62,6 +67,14 @@ public class WaveTransitionManager : MonoBehaviour, IGameStateListener
 
         ChestObjectContainer containerInstance = Instantiate(chestContainerPrefab, chestContainerParent);
         containerInstance.Configure(randomObjectData);
+
+        containerInstance.TakeButton.onClick.AddListener(() => TakeButtonCallback(randomObjectData));
+    }
+
+    private void TakeButtonCallback(ObjectDataSO objectToTake)
+    {
+        playerObjects.AddObject(objectToTake);
+        TryOpenChest();
     }
 
     [Button]
