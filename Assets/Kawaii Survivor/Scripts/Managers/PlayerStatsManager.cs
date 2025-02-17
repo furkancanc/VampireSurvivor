@@ -50,7 +50,7 @@ public class PlayerStatsManager : MonoBehaviour
         UpdatePlayerStats();
     }
 
-    public float GetStatValue(Stat stat) => playerStats[stat] + addends[stat];
+    public float GetStatValue(Stat stat) => playerStats[stat] + addends[stat] + objectAddens[stat];
     
     private void UpdatePlayerStats()
     {
