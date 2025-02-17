@@ -19,6 +19,6 @@ MonoBehaviour:
   <Rarity>k__BackingField: 1
   statDatas:
   - stat: 5
-    value: 5
+    value: 10
   - stat: 1
     value: -1

@@ -9,9 +9,9 @@ public class PlayerStatsManager : MonoBehaviour
     [SerializeField] private CharacterDataSO playerData;
 
     [Header("Settings")]
-    private Dictionary<Stat, float> playerStats = new Dictionary<Stat, float>();
-    private Dictionary<Stat, float> addends = new Dictionary<Stat, float>();
-    private Dictionary<Stat, float> objectAddens = new Dictionary<Stat, float>();
+    [SerializeField] private Dictionary<Stat, float> playerStats = new Dictionary<Stat, float>();
+    [SerializeField] private Dictionary<Stat, float> addends = new Dictionary<Stat, float>();
+    [SerializeField] private Dictionary<Stat, float> objectAddens = new Dictionary<Stat, float>();
     private void Awake()
     {
         playerStats = playerData.BaseStats;
@@ -51,7 +51,7 @@ public class PlayerStatsManager : MonoBehaviour
     }
 
     public float GetStatValue(Stat stat) => playerStats[stat] + addends[stat] + objectAddens[stat];
-    
+
     private void UpdatePlayerStats()
     {
         IEnumerable<IPlayerStatsDependency> playerStatsDependencies = 
