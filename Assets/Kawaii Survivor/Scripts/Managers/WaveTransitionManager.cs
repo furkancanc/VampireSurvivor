@@ -9,8 +9,13 @@ using Random = UnityEngine.Random;
 public class WaveTransitionManager : MonoBehaviour, IGameStateListener
 {
     [Header("Elements")]
-    [SerializeField] private UpgradeContainer[] upgradeContainers;
     [SerializeField] private PlayerStatsManager playerStatsManager;
+    [SerializeField] private GameObject upgradeContainersParent;
+    [SerializeField] private UpgradeContainer[] upgradeContainers;
+
+    [Header("Chest Related Stuff")]
+    [SerializeField] private ChestObjectContainer chestContainerPrefab;
+    [SerializeField] private Transform chestContainerParent;
 
     [Header("Settings")]
     private int chestsCollected;
@@ -48,12 +53,22 @@ public class WaveTransitionManager : MonoBehaviour, IGameStateListener
 
     private void ShowObject()
     {
+        --chestsCollected;
 
+        upgradeContainersParent.SetActive(false);
+
+        ObjectDataSO[] objectDatas = ResourcesManager.Objects;
+        ObjectDataSO randomObjectData = objectDatas[Random.Range(0, objectDatas.Length)];
+
+        ChestObjectContainer containerInstance = Instantiate(chestContainerPrefab, chestContainerParent);
+        containerInstance.Configure(randomObjectData);
     }
 
     [Button]
     private void ConfigureUpgradeContainers()
     {
+        upgradeContainersParent.SetActive(true);
+
         for (int i = 0; i < upgradeContainers.Length; ++i)
         {
             int randomIndex = Random.Range(0, Enum.GetValues(typeof(Stat)).Length);
