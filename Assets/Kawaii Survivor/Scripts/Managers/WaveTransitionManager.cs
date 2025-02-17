@@ -12,25 +12,43 @@ public class WaveTransitionManager : MonoBehaviour, IGameStateListener
     [SerializeField] private UpgradeContainer[] upgradeContainers;
     [SerializeField] private PlayerStatsManager playerStatsManager;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [Header("Settings")]
+    private int chestsCollected;
+    private void Awake()
     {
-        
+        Chest.onCollected += ChestCollectedCallback;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDestroy()
     {
-        
+        Chest.onCollected -= ChestCollectedCallback;
     }
+
     public void GameStateChangedCallback(GameState gameState)
     {
         switch (gameState)
         {
             case GameState.WAVETRANSITION:
-                ConfigureUpgradeContainers();
+                TryOpenChest();
                 break;
         }
+    }
+
+    private void TryOpenChest()
+    {
+        if (chestsCollected > 0)
+        {
+            ShowObject();
+        }
+        else
+        {
+            ConfigureUpgradeContainers();
+        }
+    }
+
+    private void ShowObject()
+    {
+
     }
 
     [Button]
@@ -121,6 +139,11 @@ public class WaveTransitionManager : MonoBehaviour, IGameStateListener
         }
 
         return () => playerStatsManager.AddPlayerStat(stat, value);
+    }
+
+    private void ChestCollectedCallback()
+    {
+        ++chestsCollected;
     }
 
 }
